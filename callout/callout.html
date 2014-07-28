@@ -16,25 +16,23 @@
         }
         .imgdata > img {
             margin: 1em;
+
         }
 
         #callout {
             width: 10em;
-            position: absolute;
             top: 100px;
             background-color: #3c3f41;
             color: #dee0e2;
             padding: 1em;
         }
         span.circle {
-            display: table-cell;
-            margin: 1em;
-            border: 0.125em solid red;
-            border-radius: 1em;
-            height: 1.625em;
-            width: 1.625em;
-            vertical-align: middle;
+            border: 1px solid #606364;
+            width: 28px;
+            padding: 4px 0;
+            display: inline-block;
             text-align: center;
+            border-radius: 15px;
         }
         div.name, div.country {
             margin: 0.25em;
@@ -42,6 +40,18 @@
         }
         div.country {
             color: #7baacd;
+        }
+        div.callout-container {
+            visibility: hidden;
+            position: absolute;
+        }
+        div.arrow {
+            margin: 0 auto;
+            height: 0;
+            width: 0;
+            border-top: 10px solid #3c3f41;
+            border-right: 10px solid transparent;
+            border-left: 10px solid transparent;
         }
     </style>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -71,20 +81,35 @@
                 },
                 {
                     name: 'Shilpa',
-                    country: 'Italy',
-                    ratings: [5,7,8,9]
+                    country: 'Germany',
+                    ratings: [8,7,8,9]
                 },
                     {
                         name: 'Jyotika',
-                        country: 'Italy',
-                        ratings: [5,7,8,9]
+                        country: 'France',
+                        ratings: [7,7,8,9]
                     }];
 
+
+
             $('img').hover(function (event) {
+
 
                 console.log('You are hovering inside the image ... ');
                 var index = Number(event.target.dataset.id); // get the id from the image
                 var data = arr_data[index];
+
+                // place the callout
+                var callout = $('.callout-container')[0]; // get the container for the callout
+                // calculate the callout location
+                var location = event.target.getBoundingClientRect();
+                console.log(location);
+
+                callout.style.left = location.left + (location.right - location.left) / 2
+                        - callout.offsetWidth / 2 + 'px';
+
+                callout.style.top = location.top - callout.offsetHeight - 7 + 'px';
+
 
                 // replace data inside the callout
                 $('#callout > .name').html(data.name);
@@ -93,14 +118,48 @@
                 for (var i = 0, len = data.ratings.length; i < len; i++) {
                     circles.eq(i).html(data.ratings[i]);
                 }
+                callout.style.visibility = 'visible';
+
+            });
+
+            $('.imgdata').hover(function () {
 
             }, function () {
+                var callout = $('.callout-container')[0];
                 console.log('Now you are out of the image ... ');
+                callout.style.visibility = 'hidden';
             });
+
+            $('img').click(function (event) {
+
+                // get all the images
+                var allimages = $('div.imgdata > img');
+                console.log(allimages);
+                console.log(event.target);
+
+                var index = Array.prototype.indexOf.call(allimages, event.target);
+                console.log(index);
+                console.log(arr_data[index]);
+
+            });
+
         });
     </script>
 </head>
 <body>
+<div class="callout-container">
+    <div id="callout">
+        <div class="name">Person X </div>
+        <div class="country">Italy</div>
+        <div class="ratings">
+            <span class="circle">7</span>
+            <span class="circle">5</span>
+            <span class="circle">7</span>
+            <span class="circle">4</span>
+        </div>
+    </div>
+    <div class="arrow"></div>
+</div>
 <div class="imgdata">
     <img src="first.jpg" data-id="0" alt=""/>
     <img src="second.jpg" data-id="1" alt=""/>
@@ -109,15 +168,8 @@
     <img src="fifth.jpg" data-id="4" alt=""/>
     <img src="sixth.jpg" data-id="5" alt=""/>
 </div>
-<div id="callout">
-    <div class="name">Person X</div>
-    <div class="country">Italy</div>
-    <div class="ratings">
-        <span class="circle">7</span>
-        <span class="circle">5</span>
-        <span class="circle">7</span>
-        <span class="circle">4</span>
-    </div>
-</div>
+
+
+
 </body>
 </html>
