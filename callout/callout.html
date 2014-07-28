@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font: 200 1em 'Helvetica Neue';
+        }
+        .imgdata {
+            margin: 10em auto 0 auto;
+            background-color: #eee;
+            padding-top: 0.25em;
+            text-align: center;
+            width: 60%;
+        }
+        .imgdata > img {
+            margin: 1em;
+        }
+
+        #callout {
+            width: 10em;
+            position: absolute;
+            top: 100px;
+            background-color: #3c3f41;
+            color: #dee0e2;
+            padding: 1em;
+        }
+        span.circle {
+            display: table-cell;
+            margin: 1em;
+            border: 0.125em solid red;
+            border-radius: 1em;
+            height: 1.625em;
+            width: 1.625em;
+            vertical-align: middle;
+            text-align: center;
+        }
+        div.name, div.country {
+            margin: 0.25em;
+            margin-bottom: 0.5em;
+        }
+        div.country {
+            color: #7baacd;
+        }
+    </style>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script>
+        $(function () {
+
+                var arr_data = [
+                    {
+                    name: 'Jacob',
+                    country: 'Italy',
+                    ratings: [5,7,8,9]
+                },
+                {
+                    name: 'Hamid',
+                    country: 'Norway',
+                    ratings: [5,10,8,9]
+                },
+                {
+                    name: 'Kim',
+                    country: 'Sweden',
+                    ratings: [5,7,3,9]
+                },
+                {
+                    name: 'Sindhura',
+                    country: 'Italy',
+                    ratings: [5,7,8,9]
+                },
+                {
+                    name: 'Shilpa',
+                    country: 'Italy',
+                    ratings: [5,7,8,9]
+                },
+                    {
+                        name: 'Jyotika',
+                        country: 'Italy',
+                        ratings: [5,7,8,9]
+                    }];
+
+            $('img').hover(function (event) {
+
+                console.log('You are hovering inside the image ... ');
+                var index = Number(event.target.dataset.id); // get the id from the image
+                var data = arr_data[index];
+
+                // replace data inside the callout
+                $('#callout > .name').html(data.name);
+                $('#callout > .country').html(data.country);
+                var circles =  $('#callout .circle');
+                for (var i = 0, len = data.ratings.length; i < len; i++) {
+                    circles.eq(i).html(data.ratings[i]);
+                }
+
+            }, function () {
+                console.log('Now you are out of the image ... ');
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="imgdata">
+    <img src="first.jpg" data-id="0" alt=""/>
+    <img src="second.jpg" data-id="1" alt=""/>
+    <img src="third.jpg" data-id="2" alt=""/>
+    <img src="fourth.jpg" data-id="3" alt=""/>
+    <img src="fifth.jpg" data-id="4" alt=""/>
+    <img src="sixth.jpg" data-id="5" alt=""/>
+</div>
+<div id="callout">
+    <div class="name">Person X</div>
+    <div class="country">Italy</div>
+    <div class="ratings">
+        <span class="circle">7</span>
+        <span class="circle">5</span>
+        <span class="circle">7</span>
+        <span class="circle">4</span>
+    </div>
+</div>
+</body>
+</html>

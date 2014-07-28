@@ -1,0 +1,39 @@
+body {
+    font: 300 1em 'Helvetica Neue';
+    padding: 3em;
+    margin: 0;
+}
+
+input[type="text"] {
+    font: 100 1em 'Helvetica Neue Light';
+    outline: none;
+    
+    padding: 0.35em 0.5em;
+    background-color: transparent;
+    border: 1px solid red;
+}
+
+.rotate {
+    transform: rotate(-90deg);
+}
+
+div.iconbars {
+    padding: 0.15em 0.5em;
+    float: left;
+    background-color: #fc3;
+}
+
+div.rotate {
+    transition: all 500ms ease;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+
+}
+
+div.rotaterev::before {
+    transition: all 500ms ease;
+    content: 'ola';
+    background-color: #fc3;
+    -webkit-transform: rotate(-90deg) scaleY(0.2);
+    -moz-transform: rotate(-90deg) scaleY(0.2);
+}

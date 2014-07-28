@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bars = document.getElementsByClassName('iconbars')[0];
+            bars.addEventListener('click', function (event) {
+                if (bars.className.indexOf(' rotatere') === -1) {
+                    bars.className = bars.className.replace(' rotate', ' rotaterev');
+                } else {
+                    console.log('here');
+                    bars.className = bars.className.replace(' rotaterev', ' rotate');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>About Us</li>
+            <li>Contact</li>
+            <li></li>
+        </ul>
+    </nav>
+    <div class="bars_container iconbars rotate">
+        <i class="fa fa-2x fa-bars"></i>
+    </div>
+</body>
+</html>

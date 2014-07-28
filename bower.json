@@ -1,0 +1,10 @@
+{
+    "name": "bars",
+    "description": "Bars Animation",
+    "version": "0.0.1",
+    "main": "/base.js",
+    "dependencies": {
+        "font-awesome":"latest",
+        "jquery": "latest"
+    }
+}
