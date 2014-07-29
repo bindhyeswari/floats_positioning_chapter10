@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font: 200 1em 'Helvetica Neue';
+        }
+        .imgdata {
+            margin: 10em auto 0 auto;
+            background-color: #eee;
+            padding-top: 0.25em;
+            text-align: center;
+            width: 60%;
+        }
+        .imgdata > img {
+            margin: 1em;
+
+        }
+
+        #callout {
+            width: 10em;
+            top: 100px;
+
+            background-color: #3c3f41;
+            color: #dee0e2;
+            padding: 1em;
+            background-color: rgba(0,0,0,0.2);
+        }
+        span.circle {
+            border: 1px solid #606364;
+            width: 28px;
+            padding: 4px 0;
+            display: inline-block;
+            text-align: center;
+            border-radius: 15px;
+        }
+        div.name, div.country {
+            margin: 0.25em;
+            margin-bottom: 0.5em;
+        }
+        div.country {
+            color: #7baacd;
+        }
+        div.callout-container {
+            visibility: visible;
+            position: absolute;
+
+        }
+        div.arrow {
+
+            margin: 0 auto;
+            height: 0;
+            width: 0;
+            border-top: 10px solid #3c3f41;
+            border-right: 10px solid transparent;
+            border-left: 10px solid transparent;
+        }
+    </style>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var images = document.getElementsByClassName('imgdata')[0].getElementsByTagName('img');
+
+            for (var i = 0, len = images.length; i < len; i++) {
+                images[i].addEventListener('mouseover', function (event) {
+                    var img = event.target;// this;
+                    var index = Array.prototype.indexOf.call(images, img);
+                    console.log(index);
+                });
+            }
+
+
+        });
+    </script>
+</head>
+<body>
+<div class="callout-container">
+    <div id="callout">
+        <div class="name">Person X </div>
+        <div class="country">Italy</div>
+        <div class="ratings">
+            <span class="circle">7</span>
+            <span class="circle">5</span>
+            <span class="circle">7</span>
+            <span class="circle">4</span>
+        </div>
+    </div>
+    <div class="arrow"></div>
+</div>
+<div class="imgdata">
+    <img src="first.jpg" data-id="0" alt=""/>
+    <img src="second.jpg" data-id="1" alt=""/>
+    <img src="third.jpg" data-id="2" alt=""/>
+    <img src="fourth.jpg" data-id="3" alt=""/>
+    <img src="fifth.jpg" data-id="4" alt=""/>
+    <img src="sixth.jpg" data-id="5" alt=""/>
+</div>
+
+
+
+</body>
+</html>
